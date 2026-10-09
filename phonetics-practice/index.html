@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Phonetics Quest · Exam 1</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main class="wrap">
+  <div class="top"><div class="brand">Phonetics Quest</div><div class="tag">Exam 1 practice</div></div>
+  <h1>Learn the sounds.<br>Beat your score.</h1>
+  <p class="intro">Practice the ideas on your exam sheet with instant feedback. Try the quiz, vowel map, IPA chart puzzle, and both class worksheets.</p>
+  <div class="tabs" role="tablist" aria-label="Game modes">
+    <button class="tab active" id="quiz-tab" type="button" role="tab" aria-selected="true">⚡ Quick quiz</button>
+    <button class="tab" id="map-tab" type="button" role="tab" aria-selected="false">🗺️ Vowel map</button>
+    <button class="tab" id="ws1-tab" type="button" role="tab" aria-selected="false">📄 Worksheet 1</button>
+    <button class="tab" id="ws2-tab" type="button" role="tab" aria-selected="false">📄 Worksheet 2</button>
+    <button class="tab" id="chart-tab" type="button" role="tab" aria-selected="false">🧩 IPA chart puzzle</button>
+    <button class="tab" id="english-tab" type="button" role="tab" aria-selected="false">🔤 English vowel chart</button>
+  </div>
+  <section class="card" id="quiz-panel" role="tabpanel" aria-labelledby="quiz-tab">
+    <div id="quiz-play">
+      <div class="row"><div class="eyebrow" id="round-label">Round 1 · Foundations</div><div class="stats" id="quiz-stats">Question 1 of 18 · Score 0</div></div>
+      <div class="progress" aria-hidden="true"><div id="quiz-progress"></div></div>
+      <div class="question" id="question"></div><div class="answers" id="answers"></div>
+      <div class="feedback hidden" id="feedback" role="status"></div>
+      <div class="actions"><button class="primary hidden" id="next" type="button">Next question →</button><span class="muted">Tip: press 1–4 to answer; Enter for next.</span></div>
+    </div>
+    <div class="hidden" id="quiz-end"><div class="eyebrow">Run complete</div><h2 id="end-title">Nice work!</h2><div class="bigscore" id="final-score"></div><p id="end-note"></p><h3 id="review-title">Review these ideas</h3><ol class="review" id="review-list"></ol><div class="actions"><button class="primary" id="restart" type="button">Play again</button><button class="secondary hidden" id="retry-missed" type="button">Retry missed questions</button></div></div>
+  </section>
+  <section class="card hidden" id="map-panel" role="tabpanel" aria-labelledby="map-tab">
+    <div class="eyebrow">Vowel map</div><h2>Map every vowel</h2><p class="map-intro">The 13 single vowels and 3 diphthongs from your sheet appear in a new random order each run. Place single vowels by height, backness, and lip rounding; identify the three glides by their example words.</p>
+    <div class="map-layout" id="map-layout"><div id="mono-area"><div class="map-head"><span></span><span>Front<br>unrounded</span><span>Central<br>unrounded</span><span>Back<br>unrounded</span><span>Back<br>rounded</span></div><div class="map-grid" id="map-grid"></div><p class="legend">Rows show tongue height. Columns show tongue backness and whether the lips are rounded.</p></div><div><div class="prompt-box"><div class="eyebrow" id="map-count">Vowel 1 of 16</div><div class="ipa" id="map-symbol">/i/</div><div id="map-word">as in “beat”</div><div class="glides hidden" id="glide-choices"></div><p class="map-feedback" id="map-feedback" role="status">Tap the matching square.</p><button class="primary hidden" id="map-next" type="button">Next vowel →</button></div><div class="actions"><button class="secondary" id="map-restart" type="button">Shuffle and restart</button></div></div></div>
+  </section>
+  <section class="card hidden" id="chart-panel" role="tabpanel" aria-labelledby="chart-tab">
+    <div class="eyebrow">IPA chart puzzle</div><h2>Fill the green spaces</h2><p class="map-intro">Drag each IPA letter from the bank into its place on the vowel chart. On a phone, tap a letter and then tap a green space. Incorrect placements stay in the bank so you can try again.</p>
+    <div class="chart-layout"><div class="chart-scroller"><div class="ipa-chart" id="ipa-chart">
+      <svg viewBox="0 0 805 425" aria-hidden="true"><g fill="none" stroke="#202020" stroke-width="2"><path d="M181 52H630V390H393Z"/><path d="M247 166H630M317 278H630M402 52L518 390"/></g><g fill="#202020" font-family="Arial,sans-serif" font-size="15"><text x="15" y="57">Close</text><text x="15" y="171">Close-mid</text><text x="15" y="283">Open-mid</text><text x="15" y="396">Open</text></g></svg>
+    </div><p class="chart-help">Left = front vowels · middle = central vowels · right = back vowels. In a pair, the right symbol is rounded.</p></div>
+    <div class="chart-bank"><h3>Letter bank</h3><p>Drag a letter, or tap it to select.</p><div class="chart-letters" id="chart-letters"></div><p class="chart-message" id="chart-message" role="status">Pick a letter to begin.</p><div class="row"><span class="chart-counter" id="chart-counter">0 of 28 placed</span><button class="secondary" id="chart-restart" type="button">Shuffle and reset</button></div></div></div>
+  </section>
+
+  <section class="card hidden" id="ws1-panel" role="tabpanel" aria-labelledby="ws1-tab">
+    <div class="eyebrow">Worksheet 1 · Vowel Sounds</div><h2>Describe vowels and identify contrasts</h2>
+    <p class="map-intro">Drag answers from the side into the blanks. Description answers are reusable; correctly placed example words leave the bank. You can also tap an answer, then tap a blank.</p>
+    <div class="worksheet-parts" aria-label="Worksheet 1 parts"><button type="button" id="ws1-description-tab" class="active" aria-pressed="true">Part I · Vowel descriptions</button><button type="button" id="ws1-pairs-tab" aria-pressed="false">Part II · Word pairs</button></div>
+    <div id="ws1-description-area"></div><div id="ws1-pairs-area" class="hidden"></div>
+  </section>
+  <section class="card hidden" id="ws2-panel" role="tabpanel" aria-labelledby="ws2-tab">
+    <div class="eyebrow">Worksheet 2 · Vowel Sounds</div><h2>Identify the vowel in each word</h2>
+    <p class="map-intro">Complete all 10 original word pairs. Each word has its own answer space. Drag a symbol from the side, or tap it and then tap a blank. Symbols can be reused.</p>
+    <div id="ws2-pairs-area"></div>
+  </section>
+
+  <section class="card hidden" id="english-panel" role="tabpanel" aria-labelledby="english-tab">
+    <div class="eyebrow">English vowel chart</div><h2>Place the 12 English vowels</h2>
+    <p class="map-intro">Drag the letters into the empty green spaces. The gray region marks lax vowels, and the outlined box marks rounded vowels. You can also tap a letter and then tap its space.</p>
+    <div class="chart-layout"><div class="chart-scroller"><div class="ipa-chart english-chart" id="english-chart">
+      <svg viewBox="0 0 438 337" aria-hidden="true">
+        <polygon points="126,74 358,74 358,277 255,277" fill="#c4c4c4" stroke="#888" stroke-width="1"/>
+        <g fill="none" stroke="#252525" stroke-width="2"><path d="M45 35H413V311H230Z"/><path d="M107 127H413M169 219H413M230 35L322 311"/></g>
+        <rect x="310" y="46" width="94" height="155" fill="none" stroke="#777" stroke-width="1"/>
+        <g fill="#333" font-family="Arial,sans-serif" font-size="12"><text x="30" y="29">FRONT</text><text x="215" y="29">CENTRAL</text><text x="386" y="29">BACK</text><text x="29" y="87">HIGH</text><text x="65" y="191">MID</text><text x="104" y="283">LOW</text><text x="339" y="58" font-size="10">rounded</text></g>
+        <rect x="16" y="298" width="82" height="28" fill="#c4c4c4"/><text x="22" y="317" fill="#333" font-family="Arial,sans-serif" font-size="12">LAX VOWELS</text>
+      </svg>
+    </div><p class="chart-help">Place symbols by tongue height and backness, using the same positions as your reference image.</p></div>
+    <div class="chart-bank english-chart-bank"><h3>Letter bank</h3><p>Correct letters leave the bank.</p><div class="chart-letters" id="english-letters"></div><p class="chart-message" id="english-message" role="status">Pick a letter to begin.</p><div class="chart-counter" id="english-counter">0 of 12 placed</div><div class="actions"><button class="secondary" id="english-restart" type="button">Shuffle and reset</button></div></div></div>
+  </section>
+  <footer>Based on your exam notes, both Vowel Sounds worksheets, and your IPA chart image. Worksheet answers use the course’s vowel contrasts; pronunciations can vary by accent.</footer>
+</main>
+<script defer src="quiz.js"></script>
+<script defer src="vowel-map.js"></script>
+<script defer src="charts.js"></script>
+<script defer src="worksheets.js"></script>
+</body>
+</html>
