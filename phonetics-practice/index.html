@@ -3,21 +3,29 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Phonetics Quest · Exam 1</title>
+  <title>Phonetics Quest · Exam practice</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <main class="wrap">
-  <div class="top"><div class="brand">Phonetics Quest</div><div class="tag">Exam 1 practice</div></div>
+  <div class="top"><div class="brand">Phonetics Quest</div><div class="tag" id="exam-tag">Exam 1 practice</div></div>
   <h1>Learn the sounds.<br>Beat your score.</h1>
-  <p class="intro">Practice the ideas on your exam sheet with instant feedback. Try the quiz, vowel map, IPA chart puzzle, and both class worksheets.</p>
-  <div class="tabs" role="tablist" aria-label="Game modes">
+  <p class="intro" id="exam-intro">Practice the ideas on your exam sheet with instant feedback. Try the quiz, vowel map, IPA chart puzzle, and both class worksheets.</p>
+  <div class="exam-picker" role="group" aria-label="Choose an exam">
+    <button class="exam-choice active" id="exam1-select" type="button" aria-pressed="true"><strong>Exam 1</strong><span>Vowel sounds</span></button>
+    <button class="exam-choice" id="exam2-select" type="button" aria-pressed="false"><strong>Exam 2 <small>NEW</small></strong><span>Consonant sounds</span></button>
+  </div>
+  <div class="tabs" id="exam1-tabs" role="tablist" aria-label="Exam 1 game modes">
     <button class="tab active" id="quiz-tab" type="button" role="tab" aria-selected="true">⚡ Quick quiz</button>
     <button class="tab" id="map-tab" type="button" role="tab" aria-selected="false">🗺️ Vowel map</button>
     <button class="tab" id="ws1-tab" type="button" role="tab" aria-selected="false">📄 Worksheet 1</button>
     <button class="tab" id="ws2-tab" type="button" role="tab" aria-selected="false">📄 Worksheet 2</button>
     <button class="tab" id="chart-tab" type="button" role="tab" aria-selected="false">🧩 IPA chart puzzle</button>
     <button class="tab" id="english-tab" type="button" role="tab" aria-selected="false">🔤 English vowel chart</button>
+  </div>
+  <div class="tabs hidden" id="exam2-tabs" role="tablist" aria-label="Exam 2 game modes">
+    <button class="tab" id="consonant-quiz-tab" type="button" role="tab" aria-selected="false">⚡ Definitions quiz</button>
+    <button class="tab" id="consonant-chart-tab" type="button" role="tab" aria-selected="false">🧩 English consonants</button>
   </div>
   <section class="card" id="quiz-panel" role="tabpanel" aria-labelledby="quiz-tab">
     <div id="quiz-play">
@@ -67,11 +75,43 @@
     </div><p class="chart-help">Place symbols by tongue height and backness, using the same positions as your reference image.</p></div>
     <div class="chart-bank english-chart-bank"><h3>Letter bank</h3><p>Correct letters leave the bank.</p><div class="chart-letters" id="english-letters"></div><p class="chart-message" id="english-message" role="status">Pick a letter to begin.</p><div class="chart-counter" id="english-counter">0 of 12 placed</div><div class="actions"><button class="secondary" id="english-restart" type="button">Shuffle and reset</button></div></div></div>
   </section>
-  <footer>Based on your exam notes, both Vowel Sounds worksheets, and your IPA chart image. Worksheet answers use the course’s vowel contrasts; pronunciations can vary by accent.</footer>
+  <section class="card hidden" id="consonant-quiz-panel" role="tabpanel" aria-labelledby="consonant-quiz-tab">
+    <div class="eyebrow">Exam 2 · Consonant Sounds</div><h2>Know every definition</h2>
+    <p class="map-intro">Match each term to its definition from your PDF. Every run covers all 34 definitions plus the three dimensions of consonant classification. Questions and choices shuffle each time.</p>
+    <div id="cq-play">
+      <div class="row"><span class="eyebrow" id="cq-category"></span><span class="stats" id="cq-stats"></span></div>
+      <div class="progress" aria-hidden="true"><div id="cq-progress"></div></div>
+      <h3 class="question" id="cq-question"></h3><div class="answers" id="cq-answers"></div>
+      <div class="feedback hidden" id="cq-feedback" role="status"></div>
+      <div class="actions"><button class="primary hidden" id="cq-next" type="button">Next question →</button><span class="muted">Press 1–4 to answer; Enter for next.</span></div>
+    </div>
+    <div id="cq-end" class="hidden">
+      <div class="eyebrow">Run complete</div><h3 id="cq-end-title"></h3><div class="bigscore" id="cq-score"></div><p id="cq-note"></p>
+      <h3 id="cq-review-title">Review the PDF definitions</h3><ol class="review" id="cq-review"></ol>
+      <div class="actions"><button class="primary" id="cq-restart" type="button">Shuffle and play again</button><button class="secondary hidden" id="cq-retry" type="button">Retry missed questions</button></div>
+    </div>
+  </section>
+  <section class="card hidden" id="consonant-chart-panel" role="tabpanel" aria-labelledby="consonant-chart-tab">
+    <div class="eyebrow">Exam 2 · Chart puzzle</div><h2>English Consonants</h2>
+    <p class="map-intro">Fill the table from page 15 of your PDF. Drag each sound and example word into the matching space. You can also select a tile and tap a space, or use Tab and Enter. Correct answers leave the bank.</p>
+    <div class="consonant-layout">
+      <div class="consonant-scroller" tabindex="0" role="region" aria-label="English consonants table; scroll horizontally to see all columns">
+        <table class="consonant-table" id="consonant-table"><caption>Place × manner of articulation</caption></table>
+      </div>
+      <aside class="chart-bank consonant-bank"><h3>Answer bank</h3><p>Sound + example, as in your PDF.</p><div id="consonant-tiles" class="consonant-tiles"></div>
+        <p class="chart-message" id="consonant-message" role="status"></p><div class="chart-counter" id="consonant-counter"></div>
+        <div class="actions"><button class="secondary" id="consonant-reset" type="button">Shuffle and reset</button></div>
+      </aside>
+    </div>
+    <p class="chart-help">Empty cells match the original table. Nasals and approximants have no separate voicing row in this chart. /w/ is placed under Bilabial, following your PDF.</p>
+  </section>
+  <footer>Exam 1: your vowel notes, worksheets, and charts. Exam 2: definitions from Consonant Sounds, pages 2–14 and 17–18; consonant table from page 15. Wording and chart notation follow your class material.</footer>
 </main>
 <script defer src="quiz.js"></script>
 <script defer src="vowel-map.js"></script>
 <script defer src="charts.js"></script>
 <script defer src="worksheets.js"></script>
+<script defer src="exam2-data.js"></script>
+<script defer src="exam2.js"></script>
 </body>
 </html>

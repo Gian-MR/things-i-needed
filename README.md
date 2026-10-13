@@ -4,7 +4,7 @@ Small AI-assisted projects I built for studying and everyday tasks—mostly tool
 
 ## Projects
 
-- [Phonetics Quest](phonetics-practice/README.md): a browser game for practicing English vowel sounds, IPA symbols, and class worksheets.
+- [Phonetics Quest](phonetics-practice/README.md): a browser game for Exams 1 and 2, with vowel and consonant sounds, definition quizzes, draggable IPA charts, and class worksheets.
 
 Open `index.html` in a browser for the project gallery, or open `phonetics-practice/index.html` to play directly. There is no installation or build step.
 
