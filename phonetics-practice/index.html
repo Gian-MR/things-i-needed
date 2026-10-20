@@ -26,6 +26,8 @@
   <div class="tabs hidden" id="exam2-tabs" role="tablist" aria-label="Exam 2 game modes">
     <button class="tab" id="consonant-quiz-tab" type="button" role="tab" aria-selected="false">⚡ Definitions quiz</button>
     <button class="tab" id="consonant-chart-tab" type="button" role="tab" aria-selected="false">🧩 English consonants</button>
+    <button class="tab" id="orthographic-tab" type="button" role="tab" aria-selected="false">✍️ Phonetic → word</button>
+    <button class="tab" id="phonemic-tab" type="button" role="tab" aria-selected="false">🔤 Word → phonemic</button>
   </div>
   <section class="card" id="quiz-panel" role="tabpanel" aria-labelledby="quiz-tab">
     <div id="quiz-play">
@@ -105,7 +107,30 @@
     </div>
     <p class="chart-help">Empty cells match the original table. Nasals and approximants have no separate voicing row in this chart. /w/ is placed under Bilabial, following your PDF.</p>
   </section>
-  <footer>Exam 1: your vowel notes, worksheets, and charts. Exam 2: definitions from Consonant Sounds, pages 2–14 and 17–18; consonant table from page 15. Wording and chart notation follow your class material.</footer>
+  <section class="card hidden" id="orthographic-panel" role="tabpanel" aria-labelledby="orthographic-tab">
+    <div class="eyebrow">Exam 2 · Transcription · Part 1</div><h2>Phonetic → regular spelling</h2>
+    <p class="map-intro">Provide the orthographic transcription for each word (citation speech). Type the English word, then press Enter or Check. Your five original examples come first, followed by 15 more words.</p>
+    <div class="transcription-toolbar"><span class="stats" id="orthographic-score" role="status"></span><button class="secondary" id="orthographic-reset" type="button">Shuffle and reset</button></div>
+    <div class="orthographic-list" id="orthographic-list"></div>
+    <p class="chart-help">Capitalization and spaces at the start or end do not affect your answer. The first five prompts retain the notation in your example image.</p>
+  </section>
+  <section class="card hidden" id="phonemic-panel" role="tabpanel" aria-labelledby="phonemic-tab">
+    <div class="eyebrow">Exam 2 · Transcription · Part 2</div><h2>Build the phonemic transcription</h2>
+    <p class="map-intro">Provide the phonemic transcription for each word (citation speech). Drag symbols into the blanks, then check your word. On a phone or with a keyboard, select a symbol and choose a blank. Each blank holds one sound; /tʃ/, /dʒ/, and diphthongs each use one tile.</p>
+    <div class="transcription-toolbar"><span class="stats" id="phonemic-score" role="status"></span><button class="secondary" id="phonemic-reset" type="button">Shuffle and reset</button></div>
+    <div class="transcription-layout">
+      <div id="phonemic-list" class="phonemic-list"></div>
+      <aside class="transcription-bank" aria-label="Phonemic symbol bank">
+        <h3>Sound bank</h3><p>Reuse any symbol as often as you need.</p>
+        <div id="transcription-symbols"></div>
+        <p class="transcription-bank-status" id="phonemic-message" role="status">Select a sound, then choose a blank.</p>
+        <button class="secondary" id="phonemic-deselect" type="button">Deselect sound</button>
+        <p class="chart-help">Use Backspace or Delete on a focused blank to empty it. Select a new sound to replace an answer.</p>
+      </aside>
+    </div>
+    <details class="transcription-notes"><summary>Notation and pronunciation references</summary><p>Practice uses American English and your class-style symbols: /ɛ/ as in <em>elephant</em>, /i/ as in <em>teacher</em>, /ɹ/ as in <em>zebra</em>, and /ɚ/ for the last sound in <em>teacher</em>. Stress marks, syllable dots, and vowel-length marks are omitted, as in your example. For <em>elephant</em>, both /ɛləfənt/ and /ɛlɪfənt/ are accepted.</p><p>Compare the US entries for <a href="https://dictionary.cambridge.org/pronunciation/english/jungle" target="_blank" rel="noopener noreferrer">jungle</a>, <a href="https://dictionary.cambridge.org/pronunciation/english/elephant" target="_blank" rel="noopener noreferrer">elephant</a>, <a href="https://dictionary.cambridge.org/pronunciation/english/teacher" target="_blank" rel="noopener noreferrer">teacher</a>, and <a href="https://dictionary.cambridge.org/us/pronunciation/english/mission" target="_blank" rel="noopener noreferrer">mission</a>. Dictionary notation may differ from your class notation.</p></details>
+  </section>
+  <footer>Exam 1: your vowel notes, worksheets, and charts. Exam 2: definitions from Consonant Sounds, pages 2–14 and 17–18; consonant table from page 15; transcription activities based on your example image with additional practice words.</footer>
 </main>
 <script defer src="quiz.js"></script>
 <script defer src="vowel-map.js"></script>
@@ -113,5 +138,7 @@
 <script defer src="worksheets.js"></script>
 <script defer src="exam2-data.js"></script>
 <script defer src="exam2.js"></script>
+<script defer src="transcription-data.js"></script>
+<script defer src="transcription.js"></script>
 </body>
 </html>
