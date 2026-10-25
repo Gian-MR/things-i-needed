@@ -13,13 +13,13 @@
     });
     get('exam-tag').textContent = `Exam ${exam} practice`;
     get('exam-intro').textContent = exam === 2
-      ? 'Practice definitions, fill the English consonants table, and transcribe words in both directions. Pick an activity for instant feedback.'
+      ? 'Practice definitions, fill the consonants table, transcribe words, and decode whole conversations. Pick an activity for instant feedback.'
       : 'Practice the ideas on your exam sheet with instant feedback. Try the quiz, vowel map, IPA chart puzzle, and both class worksheets.';
     setTab(lastMode[exam]);
   }
   get('exam1-select').onclick = () => chooseExam(1);
   get('exam2-select').onclick = () => chooseExam(2);
-  ['consonant-quiz', 'consonant-chart', 'orthographic', 'phonemic'].forEach(mode => {
+  ['consonant-quiz', 'consonant-chart', 'orthographic', 'phonemic', 'conversation'].forEach(mode => {
     get(`${mode}-tab`).onclick = () => setTab(mode);
   });
   document.querySelectorAll('[role="tab"]').forEach(tab => {
@@ -220,5 +220,8 @@
   }
   get('consonant-reset').onclick = resetConsonants;
   startDefinitions(); resetConsonants(); setTab('quiz');
-  if (window.location.hash === '#exam2') chooseExam(2);
+  if (['#exam2', '#exam2-conversation'].includes(window.location.hash)) {
+    chooseExam(2);
+    if (window.location.hash === '#exam2-conversation') setTab('conversation');
+  }
 })();

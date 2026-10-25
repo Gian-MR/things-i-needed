@@ -75,3 +75,55 @@
   .phonemic-blanks{gap:4px}
   .transcription-slash{font-size:20px}
 }
+
+.conversation-picker{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0 0 20px}
+.conversation-choice{border:2px solid #dce3ef;background:#fbfcff;color:#43516b;padding:13px 15px;border-radius:13px;text-align:left}
+.conversation-choice strong,.conversation-choice span{display:block}
+.conversation-choice strong{font-size:15px}
+.conversation-choice span{font-size:12px;margin-top:5px}
+.conversation-choice.active{border-color:#6761be;background:#eeedff;color:#292b77}
+.conversation-progress{margin:15px 0 20px}
+#conversation-review{font-size:12px;padding:9px 12px}
+#conversation-review:disabled{opacity:.55;cursor:default}
+.conversation-transcript{background:#f7f8fd;border:1px solid #dfe5ef;border-radius:17px;padding:19px;margin-bottom:20px}
+.conversation-line{display:grid;grid-template-columns:42px minmax(0,1fr);gap:9px;align-items:baseline;margin:0 0 13px}
+.conversation-line:last-child{margin-bottom:0}
+.conversation-speaker{font-size:12px;font-weight:800;color:#596780}
+.conversation-words{min-width:0;line-height:1.85;overflow-wrap:anywhere}
+.conversation-ipa-word{display:inline-block;vertical-align:baseline;font-family:"Charis SIL","Doulos SIL","DejaVu Sans",sans-serif;font-size:21px;line-height:1.5;max-width:100%;overflow-wrap:anywhere;padding:1px 5px;margin:2px 0;border:1px solid transparent;border-radius:6px;background:transparent;color:#25334b;touch-action:manipulation}
+.conversation-ipa-word:hover:not(:disabled){background:#eeedff;border-color:#c8c5f0}
+.conversation-ipa-word.skipped{background:#fff3d5;border-color:#d9ae51;color:#795016}
+.conversation-ipa-word.decoded{color:#277247;background:#e9f8f0;cursor:default;opacity:1}
+.conversation-ipa-word.current{color:#292b77;background:#e6e4ff;border:2px solid #6761be;font-weight:750;padding:0 4px}
+.conversation-answer{border:2px solid #dad7f5;background:#fbfaff;border-radius:16px;padding:20px}
+.conversation-answer .eyebrow{margin:0}
+.conversation-current-ipa{font-family:"Charis SIL","Doulos SIL","DejaVu Sans",sans-serif;font-size:26px;overflow-wrap:anywhere;color:#292b77}
+.conversation-input-row{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px;margin-top:15px}
+.conversation-feedback{min-height:25px;font-size:14px;font-weight:650;color:#596780;margin:13px 0 22px;line-height:1.5}
+.conversation-feedback.correct{color:#24652c}
+.conversation-feedback.wrong{color:#a52c3c}
+.conversation-answer input[aria-invalid="true"]{border-color:#dc6a76;background:#fff5f5}
+.conversation-complete{border:1px solid #63ae51;background:#e9f8f0;border-radius:15px;padding:20px;margin-bottom:22px;color:#24652c}
+.conversation-complete h3{margin:0 0 8px}.conversation-complete p{margin:0}
+.conversation-english{border-top:1px solid #e2e8f2;padding-top:20px}
+.conversation-english h3{font-size:17px;margin:0 0 6px}
+.conversation-english>.muted{font-size:13px;margin:0 0 17px}
+.conversation-english-word{display:inline-block;font-size:15px;line-height:1.5;padding:2px 6px;margin:2px 0;border:1px dashed #c4ccdc;border-radius:5px;background:#f8faff;color:#66738b;vertical-align:baseline;touch-action:manipulation}
+.conversation-english-word.decoded{border:0;background:transparent;color:#26334b;padding:2px 0}
+.conversation-english-word.skipped{border-color:#d9ae51;background:#fff3d5;color:#795016}
+.conversation-english-word.current{border:2px solid #6761be;background:#eeedff;color:#292b77;padding:1px 5px}
+#conversation-source{font-size:12px}
+@media(max-width:680px){
+  .conversation-picker{gap:6px}
+  .conversation-choice{padding:10px 8px}
+  .conversation-choice strong{font-size:12px}
+  .conversation-choice span{font-size:11px}
+  .conversation-transcript{padding:12px}
+  .conversation-line{grid-template-columns:32px minmax(0,1fr);gap:5px}
+  .conversation-ipa-word{font-size:19px;padding:2px 4px}
+  .conversation-ipa-word.current{padding:1px 3px}
+  .conversation-answer{padding:14px}
+  .conversation-input-row{grid-template-columns:1fr 1fr;gap:8px}
+  .conversation-input-row input{grid-column:1/-1}
+  .conversation-input-row button{font-size:13px;padding:12px 9px}
+}

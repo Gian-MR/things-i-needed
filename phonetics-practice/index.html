@@ -28,6 +28,7 @@
     <button class="tab" id="consonant-chart-tab" type="button" role="tab" aria-selected="false">🧩 English consonants</button>
     <button class="tab" id="orthographic-tab" type="button" role="tab" aria-selected="false">✍️ Phonetic → word</button>
     <button class="tab" id="phonemic-tab" type="button" role="tab" aria-selected="false">🔤 Word → phonemic</button>
+    <button class="tab" id="conversation-tab" type="button" role="tab" aria-selected="false">💬 Decode a conversation</button>
   </div>
   <section class="card" id="quiz-panel" role="tabpanel" aria-labelledby="quiz-tab">
     <div id="quiz-play">
@@ -130,7 +131,25 @@
     </div>
     <details class="transcription-notes"><summary>Notation and pronunciation references</summary><p>Practice uses American English and your class-style symbols: /ɛ/ as in <em>elephant</em>, /i/ as in <em>teacher</em>, /ɹ/ as in <em>zebra</em>, and /ɚ/ for the last sound in <em>teacher</em>. Stress marks, syllable dots, and vowel-length marks are omitted, as in your example. For <em>elephant</em>, both /ɛləfənt/ and /ɛlɪfənt/ are accepted.</p><p>Compare the US entries for <a href="https://dictionary.cambridge.org/pronunciation/english/jungle" target="_blank" rel="noopener noreferrer">jungle</a>, <a href="https://dictionary.cambridge.org/pronunciation/english/elephant" target="_blank" rel="noopener noreferrer">elephant</a>, <a href="https://dictionary.cambridge.org/pronunciation/english/teacher" target="_blank" rel="noopener noreferrer">teacher</a>, and <a href="https://dictionary.cambridge.org/us/pronunciation/english/mission" target="_blank" rel="noopener noreferrer">mission</a>. Dictionary notation may differ from your class notation.</p></details>
   </section>
-  <footer>Exam 1: your vowel notes, worksheets, and charts. Exam 2: definitions from Consonant Sounds, pages 2–14 and 17–18; consonant table from page 15; transcription activities based on your example image with additional practice words.</footer>
+  <section class="card hidden" id="conversation-panel" role="tabpanel" aria-labelledby="conversation-tab">
+    <div class="eyebrow">Exam 2 · Conversation challenge</div><h2>Decode a conversation</h2>
+    <p class="map-intro">Choose one of three phonetic conversations. Read the dialogue above, then write its English words one at a time. Check each word or skip it and come back later. You can also select any unfinished word in the dialogue.</p>
+    <div class="conversation-picker" id="conversation-picker" role="group" aria-label="Choose a conversation"></div>
+    <div class="row"><p class="stats" id="conversation-stats"></p><button class="secondary" id="conversation-review" type="button">Review skipped words</button></div>
+    <div class="progress conversation-progress" role="progressbar" aria-label="Conversation words decoded" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="conversation-progress"><div id="conversation-progress-fill"></div></div>
+    <div class="conversation-transcript" id="conversation-transcript" aria-label="Phonetic conversation"></div>
+    <form class="conversation-answer" id="conversation-form" novalidate>
+      <div class="row"><label for="conversation-input" class="eyebrow" id="conversation-word-label"></label><span class="conversation-current-ipa" id="conversation-current-ipa" aria-hidden="true"></span></div>
+      <div class="conversation-input-row"><input class="orthographic-input" id="conversation-input" type="text" placeholder="Type one English word" autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="conversation-help conversation-feedback"><button class="primary" type="submit">Check word</button><button class="secondary" id="conversation-skip" type="button">Skip word →</button></div>
+      <p class="chart-help" id="conversation-help">Press Enter to check. Correct answers advance automatically. Contractions, such as “I'll,” count as one word; capitalization and punctuation are not graded.</p>
+    </form>
+    <p class="conversation-feedback" id="conversation-feedback" role="status" aria-live="polite"></p>
+    <div class="conversation-complete hidden" id="conversation-complete"><h3>Conversation decoded!</h3><p>Every word is correct. Read your English version below, try another conversation, or restart this one.</p></div>
+    <div class="conversation-english"><h3>Your English version</h3><p class="muted">Correct words appear here. Select a blank to return to an unfinished word.</p><div id="conversation-english"></div></div>
+    <div class="actions"><button class="secondary" id="conversation-reset" type="button">Restart this conversation</button><span class="muted" id="conversation-source"></span></div>
+    <details class="transcription-notes"><summary>About the phonetic notation</summary><p>Conversation 1 adapts your doctor's-office worksheet. Conversations 2 and 3 are new practice dialogues. The game uses broad American English with your class-style symbols, including /ɛ/, /ɹ/, and /ɚ/. Word boundaries are separated for this exercise; connected speech may combine or reduce sounds. Stress and vowel-length marks are omitted.</p><p>Pronunciation references: Cambridge Dictionary entries for <a href="https://dictionary.cambridge.org/dictionary/english/office" target="_blank" rel="noopener noreferrer">office</a>, <a href="https://dictionary.cambridge.org/pronunciation/english/secretary" target="_blank" rel="noopener noreferrer">secretary</a>, <a href="https://dictionary.cambridge.org/pronunciation/english/appointment" target="_blank" rel="noopener noreferrer">appointment</a>, and <a href="https://dictionary.cambridge.org/dictionary/english/library" target="_blank" rel="noopener noreferrer">library</a>.</p></details>
+  </section>
+  <footer>Exam 1: your vowel notes, worksheets, and charts. Exam 2: definitions from Consonant Sounds, pages 2–14 and 17–18; consonant table from page 15; word and conversation transcription practice based on your examples, with additional exercises.</footer>
 </main>
 <script defer src="quiz.js"></script>
 <script defer src="vowel-map.js"></script>
@@ -140,5 +159,7 @@
 <script defer src="exam2.js"></script>
 <script defer src="transcription-data.js"></script>
 <script defer src="transcription.js"></script>
+<script defer src="conversations-data.js"></script>
+<script defer src="conversations.js"></script>
 </body>
 </html>
