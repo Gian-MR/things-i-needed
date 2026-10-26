@@ -161,6 +161,7 @@
           : missing ? `Fill ${missing} empty sound${missing === 1 ? '' : 's'} before checking again.`
           : '✗ Not quite. Change the red sounds and check again.');
         updateScore('phonemic', words.length);
+        if (right) focusNextUnanswered(row, '.transcription-slot');
       };
       clear.onclick = () => {slots.forEach((_, i) => fillSlot(i, null));};
       controls.append(check, clear); row.append(exercise, controls, feedback);
