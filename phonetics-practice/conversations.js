@@ -111,11 +111,15 @@
       if (focusInput) get('conversation-input').focus({preventScroll:true});
     }
   }
-  get('conversation-input').addEventListener('input', () => {
+  get('conversation-input').addEventListener('input', event => {
     const state = currentState(), answer = state.answers[state.current];
     answer.draft = get('conversation-input').value; answer.wrong = false;
     get('conversation-input').setAttribute('aria-invalid', 'false');
     message(''); get('conversation-feedback').textContent = ''; get('conversation-feedback').className = 'conversation-feedback';
+    const input = answer.draft.trim();
+    if (!event.isComposing && input.split(/\s+/).length === 1 && normalize(input) === normalize(currentExercise().words[state.current].english)) {
+      checkWord();
+    }
   });
   function checkWord() {
     const exercise = currentExercise(), state = currentState(), answer = state.answers[state.current];
