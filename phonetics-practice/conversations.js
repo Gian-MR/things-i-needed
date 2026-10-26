@@ -117,9 +117,9 @@
     get('conversation-input').setAttribute('aria-invalid', 'false');
     message(''); get('conversation-feedback').textContent = ''; get('conversation-feedback').className = 'conversation-feedback';
   });
-  get('conversation-form').addEventListener('submit', event => {
-    event.preventDefault();
+  function checkWord() {
     const exercise = currentExercise(), state = currentState(), answer = state.answers[state.current];
+    if (answer.status === 'correct') return;
     const input = get('conversation-input').value.trim(), expected = exercise.words[state.current];
     answer.draft = get('conversation-input').value;
     if (!normalize(input)) {message('Type an English word, or choose Skip word.'); render(true); return;}
@@ -138,6 +138,9 @@
     }
     render(next !== -1);
     if (next === -1) get('conversation-reset').focus({preventScroll:true});
+  }
+  get('conversation-form').addEventListener('submit', event => {
+    event.preventDefault(); checkWord();
   });
   get('conversation-skip').onclick = () => {
     const state = currentState(), answer = state.answers[state.current], previous = state.current;
