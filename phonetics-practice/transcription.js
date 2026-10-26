@@ -19,6 +19,16 @@
     row.classList.toggle('transcription-wrong', result === 'wrong');
     row.querySelector('.transcription-feedback').textContent = message;
   }
+  function focusNextUnanswered(row, selector) {
+    const rows = [...row.parentElement.children], start = rows.indexOf(row);
+    for (let offset = 1; offset < rows.length; offset++) {
+      const next = rows[(start + offset) % rows.length];
+      if (next.dataset.result === 'correct') continue;
+      next.querySelector(selector).focus({preventScroll:true});
+      next.scrollIntoView({block:'nearest'});
+      return;
+    }
+  }
 
   function renderOrthographic(words) {
     get('orthographic-list').replaceChildren();
@@ -35,17 +45,18 @@
       feedback.setAttribute('role', 'status'); input.setAttribute('aria-describedby', feedback.id);
       const check = button('Check'); check.type = 'submit';
       const correct = () => input.value.trim().toLowerCase() === word;
-      const grade = () => {
+      const grade = (advance = false) => {
         const right = correct();
         setResult(row, right ? 'correct' : 'wrong', right ? '✓ Correct!' : input.value.trim() ? '✗ Not quite. Try again.' : 'Type a word first.');
         input.setAttribute('aria-invalid', String(!right)); updateScore('orthographic', words.length);
+        if (right && advance) focusNextUnanswered(row, 'input');
       };
       input.oninput = () => {
-        if (correct()) grade();
+        if (correct()) grade(true);
         else if (row.dataset.result) grade();
       };
       input.onblur = () => {if (input.value.trim()) grade();};
-      row.onsubmit = event => {event.preventDefault(); grade();};
+      row.onsubmit = event => {event.preventDefault(); grade(true);};
       row.append(label, input, check, feedback); get('orthographic-list').appendChild(row);
     });
     updateScore('orthographic', words.length);
