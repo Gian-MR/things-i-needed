@@ -35,17 +35,8 @@
     });
   });
 
-  const classification = {
-    term:'the three dimensions used to classify consonants',group:'Foundations',page:3,
-    definition:'voicing, place of articulation, and manner of articulation.',
-    source:'Consonants are classified along three dimensions: voicing, place of articulation, and manner of articulation.',
-    distractors:[
-      'vocal cords vibrate',
-      'Describes how sounds are produced in the vocal tract.',
-      'Describes where sounds are produced in the vocal tract.'
-    ]
-  };
-  const quizItems = [...consonantDefinitions, classification];
+  const quizItems = consonantDefinitions;
+  get('cq-total').textContent = quizItems.length;
   let quizOrder = [], quizIndex = 0, quizScore = 0, quizMissed = [], quizAnswered = false, choices = [];
 
   function startDefinitions(indices) {
@@ -64,7 +55,7 @@
     const distractors = item.distractors || [...sameGroup, ...otherGroups].slice(0, 3).map(d => d.definition);
     choices = shuffled([item.definition, ...distractors]);
     get('cq-category').textContent = item.group;
-    get('cq-question').textContent = `Which definition matches ${item.term}?`;
+    get('cq-question').textContent = item.question || `Which definition matches ${item.term}?`;
     get('cq-stats').textContent = `Question ${quizIndex + 1} of ${quizOrder.length} · Score ${quizScore}`;
     get('cq-progress').style.width = `${quizIndex / quizOrder.length * 100}%`;
     get('cq-answers').replaceChildren();
@@ -94,8 +85,14 @@
     const quote = document.createElement('p');
     quote.textContent = item.source || item.definition;
     const source = document.createElement('span');
-    source.className = 'muted'; source.textContent = `Consonant Sounds · page ${item.page}`;
-    get('cq-feedback').replaceChildren(heading, quote, source);
+    source.className = 'muted'; source.textContent = `${item.document} · page ${item.page} · ${item.section}`;
+    get('cq-feedback').replaceChildren(heading, quote);
+    if (item.note) {
+      const note = document.createElement('p');
+      note.textContent = item.note;
+      get('cq-feedback').appendChild(note);
+    }
+    get('cq-feedback').appendChild(source);
     get('cq-feedback').classList.remove('hidden');
     get('cq-stats').textContent = `Question ${quizIndex + 1} of ${quizOrder.length} · Score ${quizScore}`;
     get('cq-progress').style.width = `${(quizIndex + 1) / quizOrder.length * 100}%`;
@@ -119,7 +116,7 @@
     get('cq-review').replaceChildren();
     quizMissed.forEach(index => {
       const item = quizItems[index], li = document.createElement('li');
-      li.textContent = `${item.term} — ${item.source || item.definition} (page ${item.page})`;
+      li.textContent = `${item.term} — ${item.definition}${item.note ? ` ${item.note}` : ''} (${item.document}, page ${item.page}, ${item.section})`;
       get('cq-review').appendChild(li);
     });
     get('cq-review-title').classList.toggle('hidden', !quizMissed.length);
