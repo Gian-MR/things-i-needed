@@ -77,6 +77,7 @@
 }
 
 .conversation-picker{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0 0 20px}
+@media(min-width:901px){.conversation-picker{grid-template-columns:repeat(5,minmax(0,1fr))}}
 .conversation-choice{border:2px solid #dce3ef;background:#fbfcff;color:#43516b;padding:13px 15px;border-radius:13px;text-align:left}
 .conversation-choice strong,.conversation-choice span{display:block}
 .conversation-choice strong{font-size:15px}
@@ -114,7 +115,7 @@
 .conversation-english-word.current{border:2px solid #6761be;background:#eeedff;color:#292b77;padding:1px 5px}
 #conversation-source{font-size:12px}
 @media(max-width:680px){
-  .conversation-picker{gap:6px}
+  .conversation-picker{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
   .conversation-choice{padding:10px 8px}
   .conversation-choice strong{font-size:12px}
   .conversation-choice span{font-size:11px}
